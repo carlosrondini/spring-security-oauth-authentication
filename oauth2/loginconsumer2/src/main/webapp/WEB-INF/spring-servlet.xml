@@ -24,8 +24,9 @@
 	<bean id="oauthAuthenticationProcessingFilter" class="com.example.oauth2.loginconsumer.OAuthAuthenticationProcessingFilter" >
 	    <constructor-arg value="/login" />
 	    
-	    <property name="authenticationManager" ref="authenticationManager" />
-	    <property name="userInfoUrl" value="http://localhost:8080/sparklr2/userinfo" />
+	    <property name="authenticationManager" ref="authenticationManager" />\
+	    <!-- TODO take this from properties -->
+	    <property name="userInfoUrl" value="http://localhost:8080/loginprovider2/userinfo" />
 	    <property name="restTemplate" ref="sparklrTemplate" />
 	</bean>
 	

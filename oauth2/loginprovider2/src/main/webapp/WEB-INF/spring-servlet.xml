@@ -204,10 +204,6 @@
 		<property name="userDetailsService" ref="userDetailsService" />
 	</bean>
 
-	<bean id="adminController" class="org.springframework.security.oauth.examples.sparklr.mvc.AdminController">
-		<property name="tokenServices" ref="tokenServices" />
-		<property name="userApprovalHandler" ref="userApprovalHandler" />
-	</bean>
 
 	<!-- Override the default mappings for approval and error pages -->
 	<bean id="accessConfirmationController" class="org.springframework.security.oauth.examples.sparklr.mvc.AccessConfirmationController">
