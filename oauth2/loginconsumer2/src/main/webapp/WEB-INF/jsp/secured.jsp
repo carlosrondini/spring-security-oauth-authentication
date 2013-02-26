@@ -4,18 +4,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <link href="<c:url value="/main.css"/>" rel="stylesheet" type="text/css"/>
-    <title>OAuth2 Login Consumer</title>
+  <title>OAuth2 Login Consumer</title>
 </head>
 <body>
 <div id="container">
 
     <ul id="mainlinks">
-      <li><a href="<c:url value="/index.jsp"/>" class="selected">home</a></li>
-       <li><a href="<c:url value="/secured/"/>" class="selected">Secured</a></li>
+      <li><a href="<c:url value="/index.jsp"/>">Home</a></li>
+      <li><a href="<c:url value="/secured/"/>" class="selected">Secured</a></li>
     </ul>
 
   <div id="content">
-    <h1>Sample for using OAuth2 for pseudo-authentication!</h1>
+    <h1>Your username is:</h1>
+    <h1>${userinfo}</h1>
   </div>
 </div>
 </body>
