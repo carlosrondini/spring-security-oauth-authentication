@@ -7,13 +7,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
-  <title>Sparklr</title>
+  <title>Sample OAtuh2 provider</title>
   <link type="text/css" rel="stylesheet" href="<c:url value="/style.css"/>"/>
 </head>
 
 <body>
 
-  <h1>Sparklr</h1>
+  <h1>OAuth2 access confirmation</h1>
 
   <div id="content">
 
@@ -42,7 +42,7 @@
     </authz:authorize>
   </div>
 
-  <div id="footer">Sample application for <a href="http://github.com/SpringSource/spring-security-oauth" target="_blank">Spring Security OAuth</a></div>
+  <%-- <div id="footer">Sample application for <a href="http://github.com/SpringSource/spring-security-oauth" target="_blank">Spring Security OAuth</a></div>--%>
 
 
 </body>
