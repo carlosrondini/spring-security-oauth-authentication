@@ -87,7 +87,7 @@
 		<property name="clientDetailsService" ref="clientDetails" />
 	</bean>
 
-	<bean id="userApprovalHandler" class="org.springframework.security.oauth.examples.sparklr.oauth.SparklrUserApprovalHandler">
+	<bean id="userApprovalHandler" class="com.example.oauth2.loginprovider.oauth.OauthUserApprovalHandler">
 		<property name="autoApproveClients">
 			<set>
 				<value>my-less-trusted-autoapprove-client</value>
@@ -161,10 +161,10 @@
 	</bean>
 
 	
-	<bean id="userinfoController" class="org.springframework.security.oauth.examples.sparklr.mvc.UserinfoController" />
+	<bean id="userinfoController" class="com.example.oauth2.loginprovider.mvc.UserinfoController" />
 
 		<!-- Override the default mappings for approval and error pages -->
-	<bean id="accessConfirmationController" class="org.springframework.security.oauth.examples.sparklr.mvc.AccessConfirmationController">
+	<bean id="accessConfirmationController" class="com.example.oauth2.loginprovider.mvc.AccessConfirmationController">
 		<property name="clientDetailsService" ref="clientDetails" />
 	</bean>
 

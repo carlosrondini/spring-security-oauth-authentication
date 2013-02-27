@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.sparklr.mvc;
+package com.example.oauth2.loginprovider.mvc;
 
 import java.security.Principal;
 

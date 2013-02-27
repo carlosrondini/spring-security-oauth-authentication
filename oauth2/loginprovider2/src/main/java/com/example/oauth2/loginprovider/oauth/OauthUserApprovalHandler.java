@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.security.oauth.examples.sparklr.oauth;
+package com.example.oauth2.loginprovider.oauth;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ import org.springframework.security.oauth2.provider.approval.TokenServicesUserAp
  * @author Dave Syer
  * 
  */
-public class SparklrUserApprovalHandler extends TokenServicesUserApprovalHandler {
+public class OauthUserApprovalHandler extends TokenServicesUserApprovalHandler {
 
 	private Collection<String> autoApproveClients = new HashSet<String>();
 	
