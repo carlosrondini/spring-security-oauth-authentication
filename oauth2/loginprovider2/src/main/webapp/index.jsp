@@ -14,7 +14,7 @@
 	<div id="content">
 		<h2>Home</h2>
 
-		<p>Sample OAuth2 provider usefull to test OAtuh2 pseudoauthentication.</p>
+		<p>Sample OAuth2 provider useful to test OAtuh2 pseudoauthentication.</p>
 
 		<authz:authorize ifNotGranted="ROLE_USER">
 			<h2>Login</h2>

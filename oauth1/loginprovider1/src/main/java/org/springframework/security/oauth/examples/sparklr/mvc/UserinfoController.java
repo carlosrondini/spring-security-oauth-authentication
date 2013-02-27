@@ -3,6 +3,7 @@ package org.springframework.security.oauth.examples.sparklr.mvc;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,10 +14,7 @@ public class UserinfoController {
 	@ResponseBody
 	public String userInfo() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication != null) {
-			return authentication.getName();
-		} else {
-			return "anonymous";
-		}
+		Assert.notNull(authentication);
+		return authentication.getName();
 	}
 }
