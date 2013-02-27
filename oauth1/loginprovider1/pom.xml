@@ -6,6 +6,7 @@
 	<groupId>com.example.oauth1</groupId>
 	<artifactId>loginprovider1</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<name>Spring Security OAuth 1 Login Provider Example</name>
 

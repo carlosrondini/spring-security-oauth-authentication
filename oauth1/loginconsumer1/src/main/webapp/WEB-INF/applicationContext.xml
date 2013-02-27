@@ -12,42 +12,102 @@
 		<b:property name="location" value="/WEB-INF/sparklr.properties" />
 	</b:bean>
 
-	<http auto-config='true' access-denied-page="/login.jsp">
-		<intercept-url pattern="/sparklr/**" access="ROLE_USER" />
+	<!--<http auto-config='true' access-denied-page="/login.jsp">-->
+	<!-- <http name="securityFilterChain" entry-point-ref="loginEntryPoint"> -->
+	<http entry-point-ref="loginEntryPoint">
+		<!-- 
+		 <intercept-url pattern="/sparklr/**" access="ROLE_USER" />
 		<intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
 		<form-login authentication-failure-url="/login.jsp"
 			default-target-url="/index.jsp" login-page="/login.jsp"
 			login-processing-url="/login.do" />
 		<logout logout-success-url="/index.jsp" logout-url="/logout.do" />
-	</http>
+		 -->
 
-	<!--
-	TODO 
-	 <authentication-manager alias="authenticationManager" />
+		<intercept-url pattern="/**" access="ROLE_USER" />
+
+		<logout logout-success-url="/loggedout.jsp" />
+		<anonymous enabled="false" />
+
+		<!-- 
+		 <custom-filter ref="oauthConsumerContextFilter" after="EXCEPTION_TRANSLATION_FILTER" />
+
+		<custom-filter ref="oauthConsumerFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+		 -->
+		 <custom-filter ref="standardOAuthFilters" after="EXCEPTION_TRANSLATION_FILTER" />
+		 
+
+		<custom-filter ref="oauthAuthenticationProcessingFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+	</http>
+	
+	<b:bean id="standardOAuthFilters" class="org.springframework.security.oauth.examples.tonr.MultipleFilterWrapper">
+	    <b:property name="filterList">
+	        <b:list>
+	            <b:ref bean="oauthConsumerContextFilter"/>
+	            <b:ref bean="oauthConsumerFilter"/>
+	        </b:list>
+	    </b:property>
+	</b:bean>
+
 
 	<b:bean id="loginEntryPoint"
 		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 		<b:constructor-arg value="/login" />
 	</b:bean>
+
+	<b:bean id="oauthAuthenticationProcessingFilter"
+		class="org.springframework.security.oauth.examples.tonr.OAuthAuthenticationProcessingFilter">
+		<b:constructor-arg value="/login" />
+
+		<b:property name="authenticationManager" ref="authenticationManager" />
+		<b:property name="userInfoUrl"
+			value="http://localhost:8080/loginprovider1/userinfo" />
+		<b:property name="restTemplate" ref="sparklrTemplate" />
+	</b:bean>
+	
+	 <!--<oauth:rest-template id="sparklrTemplate" resource="sparklrPhotos"/>-->
+
+	<b:bean id="sparklrTemplate"
+		class="org.springframework.security.oauth.consumer.client.OAuthRestTemplate">
+		<b:constructor-arg ref="sparklrPhotos" />
+	</b:bean>
+
+	<authentication-manager alias="authenticationManager" />
+
+
+	<!-- 
+	 <authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="marissa" password="wombat" authorities="ROLE_USER" />
+				<user name="sam" password="kangaroo" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
 	 -->
-  
-
-   <authentication-manager>
-    <authentication-provider>
-      <user-service>
-        <user name="marissa" password="wombat" authorities="ROLE_USER" />
-        <user name="sam" password="kangaroo" authorities="ROLE_USER" />
-      </user-service>
-    </authentication-provider>
-  </authentication-manager>
-
 
 	<oauth:consumer resource-details-service-ref="resourceDetails"
-		oauth-failure-page="/oauth_error.jsp">
-		<oauth:url pattern="/sparklr/**" resources="sparklrPhotos" />
-		<oauth:url pattern="/login/**" resources="none" />
+		oauth-failure-page="/oauth_error.jsp" requireAuthenticated="false">
+		 <oauth:url pattern="/**" resources="sparklrPhotos" />
+		<!-- 
+		<oauth:url pattern="/login" resources="sparklrPhotos" />
+		 -->
+		<!-- 
+		 <oauth:url pattern="/login/**" resources="none" />
+		 -->
 	</oauth:consumer>
+	
+	
+	<!-- 
+	<b:bean id ="" class="org.springframework.security.oauth.consumer.filter.OAuthConsumerContextFilter" >
+	    
+	</b:bean>
+	<b:bean id ="" class="org.springframework.security.oauth.consumer.filter.OAuthConsumerProcessingFilter" >
+	    
+	</b:bean>
+	 -->
+	
 
 	<oauth:resource-details-service id="resourceDetails">
 		<oauth:resource id="sparklrPhotos" key="tonr-consumer-key"
