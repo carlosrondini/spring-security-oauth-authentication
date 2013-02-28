@@ -56,7 +56,7 @@
 	</b:bean>
 
 	<b:bean id="oauthAuthenticationProcessingFilter"
-		class="org.springframework.security.oauth.examples.tonr.OAuthAuthenticationProcessingFilter">
+		class="com.example.oauth1.loginconsumer.OAuthAuthenticationProcessingFilter">
 		<b:constructor-arg value="/login" />
 
 		<b:property name="authenticationManager" ref="authenticationManager" />

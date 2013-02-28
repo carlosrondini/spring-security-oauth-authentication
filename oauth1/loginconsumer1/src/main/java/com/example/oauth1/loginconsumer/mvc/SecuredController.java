@@ -1,9 +1,10 @@
-package org.springframework.security.oauth.examples.tonr.mvc;
+package com.example.oauth1.loginconsumer.mvc;
 
-import org.springframework.security.oauth.examples.tonr.OauthService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.oauth1.loginconsumer.OauthService;
 
 @Controller
 public class SecuredController {

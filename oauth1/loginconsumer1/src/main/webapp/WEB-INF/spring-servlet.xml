@@ -22,12 +22,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="securedController" class="org.springframework.security.oauth.examples.tonr.mvc.SecuredController">
+	<bean id="securedController" class="com.example.oauth1.loginconsumer.mvc.SecuredController">
 		<property name="oauthService" ref="sparklrService" />
 	</bean>
 
 
-	<bean id="sparklrService" class="org.springframework.security.oauth.examples.tonr.impl.OauthServiceImpl">
+	<bean id="sparklrService" class="com.example.oauth1.loginconsumer.impl.OauthServiceImpl">
 		<property name="sparklrUserinfoURL" value="http://localhost:8080/loginprovider1/userinfo" />
 		<property name="sparklrRestTemplate">
 			<bean class="org.springframework.security.oauth.consumer.client.OAuthRestTemplate">

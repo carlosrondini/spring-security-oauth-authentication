@@ -1,4 +1,4 @@
-package org.springframework.security.oauth.examples.tonr;
+package com.example.oauth1.loginconsumer;
 
 public interface OauthService {
 

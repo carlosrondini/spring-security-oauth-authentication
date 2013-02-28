@@ -1,7 +1,8 @@
-package org.springframework.security.oauth.examples.tonr.impl;
+package com.example.oauth1.loginconsumer.impl;
 
 import org.springframework.security.oauth.consumer.client.OAuthRestTemplate;
-import org.springframework.security.oauth.examples.tonr.OauthService;
+
+import com.example.oauth1.loginconsumer.OauthService;
 
 public class OauthServiceImpl implements OauthService {
 
