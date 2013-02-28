@@ -28,7 +28,18 @@
 		<custom-filter ref="oauthAuthenticationProcessingFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 	</http>
 	
-	<b:bean id="standardOAuthFilters" class="org.springframework.security.oauth.examples.tonr.MultipleFilterWrapper">
+	
+	<b:bean  id="standardOAuthFilters" class="org.springframework.web.filter.CompositeFilter">
+	    <b:property name="filters">
+	        <b:list>
+	            <b:ref bean="oauthConsumerContextFilter"/>
+	            <b:ref bean="oauthConsumerFilter"/>
+	        </b:list>
+	    </b:property>
+	</b:bean>
+	
+	<!-- 
+	 <b:bean id="standardOAuthFilters" class="org.springframework.security.oauth.examples.tonr.MultipleFilterWrapper">
 	    <b:property name="filterList">
 	        <b:list>
 	            <b:ref bean="oauthConsumerContextFilter"/>
@@ -36,6 +47,7 @@
 	        </b:list>
 	    </b:property>
 	</b:bean>
+	 -->
 
 
 	<b:bean id="loginEntryPoint"

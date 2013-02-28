@@ -14,11 +14,7 @@
 
     <ul id="mainlinks">
         <li><a href="<c:url value="/index.jsp"/>">home</a></li>
-        <authz:authorize ifNotGranted="ROLE_USER">
-            <li><a href="<c:url value="/login.jsp"/>">login</a></li>
-        </authz:authorize>
-        <li><a href="<c:url value="/sparklr/photos"/>">sparklr pics</a></li>
-        <li><a href="<c:url value="/google/picasa"/>">picasa pics</a></li>
+        <li><a href="<c:url value="/secured/"/>" class="selected">Secured</a></li>
     </ul>
 
     <div id="content">
@@ -41,9 +37,6 @@
             </code>
         </c:if>
         <c:remove scope="session" var="OAUTH_FAILURE_KEY"/>
-
-        <p class="footer">Courtesy <a href="http://www.openwebdesign.org">Open Web Design</a> Thanks to <a
-                href="http://www.dubaiapartments.biz/">Dubai Hotels</a></p>
     </div>
 </div>
 </body>

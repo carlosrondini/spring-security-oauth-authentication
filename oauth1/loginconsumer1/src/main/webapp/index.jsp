@@ -11,10 +11,7 @@
 
     <ul id="mainlinks">
       <li><a href="<c:url value="/index.jsp"/>" class="selected">home</a></li>
-      <authz:authorize ifNotGranted="ROLE_USER">
-        <li><a href="<c:url value="/login.jsp"/>">login</a></li>
-      </authz:authorize>
-      <li><a href="<c:url value="/sparklr/photos"/>">sparklr pics</a></li>
+      <li><a href="<c:url value="/secured/"/>" class="selected">Secured</a></li>
     </ul>
 
   <div id="content">
