@@ -6,18 +6,18 @@ import com.example.oauth1.loginconsumer.OauthService;
 
 public class OauthServiceImpl implements OauthService {
 
-	private String sparklrUserinfoURL;
-	private OAuthRestTemplate sparklrRestTemplate;
+	private String userinfoURL;
+	private OAuthRestTemplate oauthRestTemplate;
 
 	public String getSparklUserInfo() {
-		return sparklrRestTemplate.getForObject(sparklrUserinfoURL, String.class);
+		return oauthRestTemplate.getForObject(userinfoURL, String.class);
 	}
 
-	public void setSparklrRestTemplate(OAuthRestTemplate sparklrRestTemplate) {
-		this.sparklrRestTemplate = sparklrRestTemplate;
+	public void setOauthRestTemplate(OAuthRestTemplate oauthRestTemplate) {
+		this.oauthRestTemplate = oauthRestTemplate;
 	}
 
-	public void setSparklrUserinfoURL(String sparklrUserinfoURL) {
-		this.sparklrUserinfoURL = sparklrUserinfoURL;
+	public void setUserinfoURL(String userinfoURL) {
+		this.userinfoURL = userinfoURL;
 	}
 }
