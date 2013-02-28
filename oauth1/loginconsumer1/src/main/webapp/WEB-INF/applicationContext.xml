@@ -9,11 +9,6 @@
               http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
               http://www.springframework.org/schema/security/oauth http://www.springframework.org/schema/security/spring-security-oauth-1.0.xsd">
 
-	<b:bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<b:property name="location" value="/WEB-INF/sparklr.properties" />
-	</b:bean>
-
 	<http entry-point-ref="loginEntryPoint">
 		<intercept-url pattern="/**" access="ROLE_USER" />
 
@@ -37,14 +32,13 @@
 		<b:property name="authenticationManager" ref="authenticationManager" />
 		<b:property name="userInfoUrl"
 			value="http://localhost:8080/loginprovider1/userinfo" />
-		<b:property name="restTemplate" ref="sparklrTemplate" />
+		<b:property name="restTemplate" ref="oauthLoginProviderTemplate" />
 	</b:bean>
 	
-	 <!--<oauth:rest-template id="sparklrTemplate" resource="sparklrPhotos"/>-->
 
-	<b:bean id="sparklrTemplate"
+	<b:bean id="oauthLoginProviderTemplate"
 		class="org.springframework.security.oauth.consumer.client.OAuthRestTemplate">
-		<b:constructor-arg ref="sparklrPhotos" />
+		<b:constructor-arg ref="oauthLoginProvider" />
 	</b:bean>
 
 	<authentication-manager alias="authenticationManager" />
@@ -93,7 +87,7 @@
 									class="org.springframework.security.web.util.AnyRequestMatcher" />
 							</b:key>
 							<b:bean class="org.springframework.security.access.SecurityConfig">
-								<b:constructor-arg value="sparklrPhotos" />
+								<b:constructor-arg value="oauthLoginProvider" />
 							</b:bean>
 						</b:entry>
 					</u:map>
@@ -111,13 +105,13 @@
 	
 	<oauth:consumer resource-details-service-ref="resourceDetails"
 		oauth-failure-page="/oauth_error.jsp" requireAuthenticated="false">
-		<oauth:url pattern="/**" resources="sparklrPhotos" />
+		<oauth:url pattern="/**" resources="oauthLoginProvider" />
 	</oauth:consumer>
  -->
 
 
 	<oauth:resource-details-service id="resourceDetails">
-		<oauth:resource id="sparklrPhotos" key="tonr-consumer-key"
+		<oauth:resource id="oauthLoginProvider" key="tonr-consumer-key"
 			secret="SHHHHH!!!!!!!!!!" request-token-url="http://localhost:8080/loginprovider1/oauth/request_token"
 			user-authorization-url="http://localhost:8080/loginprovider1/oauth/confirm_access"
 			access-token-url="http://localhost:8080/loginprovider1/oauth/access_token" />

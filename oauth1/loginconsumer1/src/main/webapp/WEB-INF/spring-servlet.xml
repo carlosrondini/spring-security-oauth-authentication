@@ -12,10 +12,6 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="/WEB-INF/sparklr.properties" />
-	</bean>
-
 	<!--Basic application beans. -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
@@ -23,18 +19,13 @@
 	</bean>
 
 	<bean id="securedController" class="com.example.oauth1.loginconsumer.mvc.SecuredController">
-		<property name="oauthService" ref="sparklrService" />
+		<property name="oauthService" ref="oauthService" />
 	</bean>
 
 
-	<bean id="sparklrService" class="com.example.oauth1.loginconsumer.impl.OauthServiceImpl">
+	<bean id="oauthService" class="com.example.oauth1.loginconsumer.impl.OauthServiceImpl">
 		<property name="sparklrUserinfoURL" value="http://localhost:8080/loginprovider1/userinfo" />
-		<property name="sparklrRestTemplate">
-			<bean class="org.springframework.security.oauth.consumer.client.OAuthRestTemplate">
-				<constructor-arg ref="sparklrPhotos" />
-			</bean>
-		</property>
-
+		<property name="sparklrRestTemplate" ref="oauthLoginProviderTemplate" />
 	</bean>
 
 </beans>
